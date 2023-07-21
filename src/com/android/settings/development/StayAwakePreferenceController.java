@@ -59,9 +59,6 @@ public class StayAwakePreferenceController extends DeveloperOptionsPreferenceCon
     public StayAwakePreferenceController(Context context, Lifecycle lifecycle) {
         super(context);
 
-        // Turn stay awake on
-        Settings.Global.putInt(mContext.getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, SETTING_VALUE_ON);
-
         if (lifecycle != null) {
             lifecycle.addObserver(this);
         }
