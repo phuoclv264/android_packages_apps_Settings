@@ -64,12 +64,10 @@ public class StayAwakePreferenceController extends DeveloperOptionsPreferenceCon
         }
 
         // Turn stay awake on
-        ContentResolver contentResolver =  mContext.getContentResolver();
-
-        int stayAwakeMode = Settings.Global.getInt(contentResolver, Settings.Global.STAY_ON_WHILE_PLUGGED_IN, 0);
+        int stayAwakeMode = Settings.Global.getInt(mContext.getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, 0);
 
         if (stayAwakeMode == 0 ){
-            Settings.Global.putInt(contentResolver, Settings.Global.STAY_ON_WHILE_PLUGGED_IN, SETTING_VALUE_ON);
+            Settings.Global.putInt(mContext.getContentResolver(), Settings.Global.STAY_ON_WHILE_PLUGGED_IN, SETTING_VALUE_ON);
         }
 
         return true;
