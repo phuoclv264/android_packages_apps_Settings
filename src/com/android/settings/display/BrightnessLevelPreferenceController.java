@@ -32,7 +32,6 @@ import android.os.Looper;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.provider.Settings;
 import android.provider.Settings.System;
 import android.service.vr.IVrManager;
 import android.text.TextUtils;
@@ -112,8 +111,6 @@ public class BrightnessLevelPreferenceController extends AbstractPreferenceContr
         mMaxVrBrightness = powerManager.getBrightnessConstraint(
                 PowerManager.BRIGHTNESS_CONSTRAINT_TYPE_MAXIMUM_VR);
         mContentResolver = mContext.getContentResolver();
-
-        Settings.System.putInt(mContentResolver, Settings.System.SCREEN_BRIGHTNESS, 1);
     }
 
     @Override
