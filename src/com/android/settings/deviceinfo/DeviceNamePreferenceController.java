@@ -136,7 +136,7 @@ public class DeviceNamePreferenceController extends BasePreferenceController
         setBluetoothDeviceName(deviceName);
         setTetherSsidName(deviceName);
         mPreference.setSummary(getSummary());
-        SystemProperties.set("ro.product.device", mPendingDeviceName);
+        SystemProperties.set("ro.product.device", deviceName);
     }
 
     private void setSettingsGlobalDeviceName(String deviceName) {
