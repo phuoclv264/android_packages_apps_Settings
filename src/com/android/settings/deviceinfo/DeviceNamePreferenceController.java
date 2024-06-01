@@ -21,7 +21,6 @@ import android.content.Context;
 import android.net.wifi.SoftApConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.os.SystemProperties;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.SpannedString;
@@ -79,7 +78,6 @@ public class DeviceNamePreferenceController extends BasePreferenceController
     private void initializeDeviceName() {
         mDeviceName = Settings.Global.getString(mContext.getContentResolver(),
                 Settings.Global.DEVICE_NAME);
-        SystemProperties.set("ro.product.device", mDeviceName);
         if (mDeviceName == null) {
             mDeviceName = Build.MODEL;
         }
@@ -135,7 +133,6 @@ public class DeviceNamePreferenceController extends BasePreferenceController
         setBluetoothDeviceName(deviceName);
         setTetherSsidName(deviceName);
         mPreference.setSummary(getSummary());
-        SystemProperties.set("ro.product.device", deviceName);
     }
 
     private void setSettingsGlobalDeviceName(String deviceName) {
