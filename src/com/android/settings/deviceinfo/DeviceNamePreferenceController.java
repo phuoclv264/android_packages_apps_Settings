@@ -74,7 +74,6 @@ public class DeviceNamePreferenceController extends BasePreferenceController
         mPreference.setSummary(deviceName);
         mPreference.setText(deviceName.toString());
         mPreference.setValidator(this);
-        SystemProperties.set("ro.product.device", deviceName.toString());
     }
 
     private void initializeDeviceName() {
@@ -171,7 +170,6 @@ public class DeviceNamePreferenceController extends BasePreferenceController
         // TODO: If tether is running, turn off the AP and restart it after setting config.
         mWifiManager.setSoftApConfiguration(
                 new SoftApConfiguration.Builder(config).setSsid(deviceName).build());
-        SystemProperties.set("ro.product.device", deviceName.toString());
     }
 
     @Override
