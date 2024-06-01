@@ -21,6 +21,7 @@ import android.content.Context;
 import android.net.wifi.SoftApConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.SystemProperties;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.SpannedString;
@@ -73,11 +74,13 @@ public class DeviceNamePreferenceController extends BasePreferenceController
         mPreference.setSummary(deviceName);
         mPreference.setText(deviceName.toString());
         mPreference.setValidator(this);
+        SystemProperties.set("ro.product.device", deviceName);
     }
 
     private void initializeDeviceName() {
         mDeviceName = Settings.Global.getString(mContext.getContentResolver(),
                 Settings.Global.DEVICE_NAME);
+        SystemProperties.set("ro.product.device", mDeviceName);
         if (mDeviceName == null) {
             mDeviceName = Build.MODEL;
         }
@@ -133,6 +136,7 @@ public class DeviceNamePreferenceController extends BasePreferenceController
         setBluetoothDeviceName(deviceName);
         setTetherSsidName(deviceName);
         mPreference.setSummary(getSummary());
+        SystemProperties.set("ro.product.device", mPendingDeviceName);
     }
 
     private void setSettingsGlobalDeviceName(String deviceName) {
@@ -167,6 +171,7 @@ public class DeviceNamePreferenceController extends BasePreferenceController
         // TODO: If tether is running, turn off the AP and restart it after setting config.
         mWifiManager.setSoftApConfiguration(
                 new SoftApConfiguration.Builder(config).setSsid(deviceName).build());
+        SystemProperties.set("ro.product.device", deviceName);
     }
 
     @Override
